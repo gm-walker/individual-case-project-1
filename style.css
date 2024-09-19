@@ -58,28 +58,26 @@ nav{
     background-color: var(--primary);
     position: relative;
     border-radius: 5rem;
-    padding: 1.5em;
+    padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
     font-weight: 500;
     overflow: hidden;
-    a, label {
-      float: left;
-      text-align: center;
-      margin-left: 1%;
-      margin-right: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .icon{
+      justify-self: flex-start;
     }
 }
-
-#gllry-pg, #rsrcs-sct, #cntct-pg{
-  padding: 7px 0px;
-}
 #hme-pg {
-  float: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   font-weight: 900;
-  transform: translate(-50%, -50%);
   font-size: x-large;
+  order: 1;
+}
+
+#pageLinks{
+  display: none;
 }
 
 form{
@@ -184,5 +182,5 @@ form{
   }
 
   #theme-chng{
-    float: right;
+    order: 2;
   }
