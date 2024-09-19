@@ -101,6 +101,7 @@ form{
         margin: 2% 2%;
         background: transparent;
         border: 2px solid var(--primary);
+        color: var(--text-color);
         border-radius: 1em;
     }
     :is(input[type=text], input[type=email], textarea):hover{
@@ -109,7 +110,7 @@ form{
     input[type=submit]{
         width: 25%;
         background-color: var(--primary);
-        color: black;
+        color: var(--text-color);
         padding: 2%;
         margin-top: 5%;
     }
