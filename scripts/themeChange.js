@@ -1,9 +1,10 @@
 var themeToggleCount = 0;
+const themeChanger = document.getElementById("theme-chng").children[0];
 
 if(sessionStorage.getItem("theme")){
     document.body.setAttribute('data-theme', sessionStorage.getItem("theme"));
     if(sessionStorage.theme == "dark"){
-        document.getElementById("theme-chng").children[0].checked = true;
+        themeChanger.checked = true;
     }
 }
 
