@@ -1,3 +1,4 @@
+// A constructor for an object that stores information about a resource.
 const Source = (name, url, description, provider) => {
     this.name = name;
     this.url = url;
