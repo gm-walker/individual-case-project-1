@@ -44,7 +44,7 @@ body{
 }
 
 /* makes all headings & navbar elements lowercase */
-h1, h2, h3, h4, h5, h6, nav {
+h1, h2, h3, h4, h5, h6, nav, #pageLinks {
     text-transform: lowercase;
     text-align: center;
     color: var(--secondary);    
@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 nav{
     background-color: var(--primary);
     position: relative;
-    border-radius: 5rem;
+    border-radius: 1rem;
     padding: 1em;
     padding-left: 2em;
     padding-right: 2em;
@@ -78,6 +78,18 @@ nav{
 
 #pageLinks{
   display: none;
+  float: left;
+  position: absolute;
+  left: -8%;
+  top: 7%;
+  background-color: var(--primary);
+  padding: 14px 16px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  a{
+    display: block;
+    padding: 3px 7px;
+  }
 }
 
 form{
