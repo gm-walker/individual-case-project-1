@@ -24,26 +24,33 @@
         <a id="cntct-pg" href="contact.html">Contact</a>
     </div>
     <h1>Resources</h1>
-    <div name="frm_calc" id="frame-calc">
-        <form>
-            
-            <label for="proj-name">What's the name of your project?</label>
-            <input type="text" name="prjName" id="proj-name" class="center" required>
-            
-            <label for="anim-length">How long is your animation?</label>
-            <input type="number" name="length" id="anim-length" class="center" placeholder="Enter the duration in minutes..." required>
-
-            <label for="time-per-frame">How long does it take to draw each frame?</label>
-            <input type="number" name="tpf" id="time-per-frame" class="center" placeholder="Enter the value in minutes..." required>
-
-            <label for="num-animators">How many animators do you have?</label>
-            <input type="number" name="numOfanimators" id="num-animators" class="center" required>
+    <div class="flex-grid">
+        <div id="learn-mat">
+            <h2>Learning Materials</h2>
+        </div>
+        <div name="frm_calc" id="frame-calc">
+            <h2>Frame Calculator</h2>
+            <form>
+                
+                <label for="proj-name">What's the name of your project?</label>
+                <input type="text" name="prjName" id="proj-name" class="center" required>
+                
+                <label for="anim-length">How long is your animation?</label>
+                <input type="number" name="length" id="anim-length" class="center" placeholder="Enter the duration in minutes..." required>
     
-            <input type="submit" value="Calculate" onclick="event.preventDefault(); displayResults(prjName, length, tpf, numOfanimators)" class="center">
-        </form>
-        <br>
-        <div id="results"></div>
+                <label for="time-per-frame">How long does it take to draw each frame?</label>
+                <input type="number" name="tpf" id="time-per-frame" class="center" placeholder="Enter the value in minutes..." required>
+    
+                <label for="num-animators">How many animators do you have?</label>
+                <input type="number" name="numOfanimators" id="num-animators" class="center" required>
+        
+                <input type="submit" value="Calculate" onclick="event.preventDefault(); displayResults(prjName, length, tpf, numOfanimators)" class="center">
+            </form>
+            <br>
+            <div id="results"></div>
+        </div>
     </div>
+    
     <script src="scripts/themeChange.js"></script>
     <script src="scripts/mobileNav.js"></script>
     <script>
