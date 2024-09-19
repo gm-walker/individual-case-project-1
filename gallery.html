@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUASC: Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+    <nav>
+        <a id="gllry-pg" class="active" href="gallery.html">Gallery</a>
+        <a id="hme-pg" href="index.html">Luasc</a>
+        <a id="rsrcs-sct" href="resources.html">Resources</a>
+        <label id="theme-chng" class="switch center">
+            <input type="checkbox" onclick="toggleTheme()">
+            <span class="slider round"></span>
+        </label>
+        <a id="cntct-pg" href="contact.html">Contact</a>
+    </nav>
+    <div>
+        <h1>Gallery</h1>
+    </div>
+    <script>
+        var themeToggleCount = 0;
+
+        function toggleTheme() {
+            // Retrieves the current theme being utilized
+            const curTheme = document.body.getAttribute('data-theme');
+            
+            if(curTheme === 'dark'){
+                document.body.setAttribute('data-theme', 'light');
+            }
+            else {
+                document.body.setAttribute('data-theme', 'dark');
+            }
+            
+            // If the theme is toggled more than 3 times, the paragraph text on the home page turns blue.
+            if(themeToggleCount >= 3){
+                document.getElementById('bio-txt').style.color = 'blue';
+            }
+            // The number of times the theme has been changed is increased by one each time.
+            themeToggleCount += 1;
+            // Then, the number of theme changes is logged to the console.
+            console.log(`Theme has been changed ${themeToggleCount} time(s).`)
+        }
+    </script>
+</body>
+</html>

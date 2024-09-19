@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUASC: Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a id="gllry-pg" href="gallery.html">Gallery</a>
+        <a id="hme-pg" href="index.html">Luasc</a>
+        <a id="rsrcs-sct" href="resources.html">Resources</a>
+        <label id="theme-chng" class="switch center">
+            <input type="checkbox" onclick="toggleTheme()">
+            <span class="slider round"></span>
+        </label>
+        <a id="cntct-pg" class="active" href="contact.html">Contact</a>
+    </nav>
+    <h1>Contact Us</h1>
+    <div id="contactme">
+        <p style="text-align: center;">Feel free to reach me through my <a href="mailto:gwalker48@liberty.edu">email</a>!</p>
+        <form id="contactfrm">
+            <label for="fname">First Name:</label>
+            <input type="text" name="fname" class="center" id="fname">
+            
+            <label for="lname">Last Name:</label>
+            <input type="text" name="lname" class="center" id="lname">
+            
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" class="center" required>
+            
+            <textarea name="message" id="msg" class="center" form="contactfrm" placeholder="Enter your message here..."></textarea>
+            
+            <input type="submit" value="Submit" class="center">
+        </form>
+    </div>
+    <script>
+        var themeToggleCount = 0;
+
+        function toggleTheme() {
+            // Retrieves the current theme being utilized
+            const curTheme = document.body.getAttribute('data-theme');
+            
+            if(curTheme === 'dark'){
+                document.body.setAttribute('data-theme', 'light');
+            }
+            else {
+                document.body.setAttribute('data-theme', 'dark');
+            }
+            
+            // If the theme is toggled more than 3 times, the paragraph text on the home page turns blue.
+            if(themeToggleCount >= 3){
+                document.getElementById('bio-txt').style.color = 'blue';
+            }
+            // The number of times the theme has been changed is increased by one each time.
+            themeToggleCount += 1;
+            // Then, the number of theme changes is logged to the console.
+            console.log(`Theme has been changed ${themeToggleCount} time(s).`)
+        }
+    </script>
+</body>
+</html>

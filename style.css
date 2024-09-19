@@ -1,0 +1,188 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter&family=Nunito);
+
+:root{
+    /* CSS Variables */
+    --bg: #fef5ee;
+    --primary: #ffdf4f;
+    --secondary: #f49268; 
+    --accent-1: #02ffc4;
+    --accent-2: #ff4c78;
+}
+
+[data-theme="dark"]{
+    --bg: #1f1f1f;
+    --text-color: white;
+    --primary: #fa8d5e;
+    --secondary: #ffdf4f;
+    --accent-2: #e93769;
+}
+
+/* when the width of the page >= 600px... */
+@media screen and (min-width: 600px) {
+    div{
+        margin-left: 24%;
+        margin-right: 24%;
+    }
+}
+a{
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.active{
+  color: var(--accent-2);
+}
+
+body{
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg);
+    div{
+      margin-left: 12%;
+      margin-right: 12%;
+    }
+}
+
+/* makes all headings & navbar elements lowercase */
+h1, h2, h3, h4, h5, h6, nav {
+    text-transform: lowercase;
+    text-align: center;
+    color: var(--secondary);    
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 5%;
+}
+
+nav{
+    background-color: var(--primary);
+    position: relative;
+    border-radius: 5rem;
+    padding: 1.5em;
+    font-weight: 500;
+    overflow: hidden;
+    a, label {
+      float: left;
+      text-align: center;
+      margin-left: 1%;
+      margin-right: 1%;
+    }
+}
+
+#gllry-pg, #rsrcs-sct, #cntct-pg{
+  padding: 7px 0px;
+}
+#hme-pg {
+  float: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 900;
+  transform: translate(-50%, -50%);
+  font-size: x-large;
+}
+
+form{
+    margin-top: 5%;
+    /* All input and text area elements within the form receive this styling */
+    :is(input, textarea){
+        width: 80%;
+        padding: 1.5% 1.5%;
+        margin: 2% 2%;
+        background: transparent;
+        border: 2px solid var(--primary);
+        border-radius: 1em;
+    }
+    :is(input[type=text], input[type=email], textarea):hover{
+        border-width: 2px;
+    }
+    input[type=submit]{
+        width: 25%;
+        background-color: var(--primary);
+        color: black;
+        padding: 2%;
+        margin-top: 5%;
+    }
+    input:hover, textarea:hover{
+        border-color: var(--accent-2)
+    }
+    input[type=submit]:hover{
+        background-color: var(--accent-2);
+    }
+    label{
+        margin-left: 8%;
+    }
+}
+
+.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 32px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 5px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: var(--accent-2);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--accent-2);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(29px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  #theme-chng{
+    float: right;
+  }

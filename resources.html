@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUASC: Resources</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a id="gllry-pg" href="gallery.html">Gallery</a>
+        <a id="hme-pg" href="index.html">Luasc</a>
+        <a id="rsrcs-sct" class="active" href="resources.html">Resources</a>
+        <label id="theme-chng" class="switch center">
+            <input type="checkbox" onclick="toggleTheme()">
+            <span class="slider round"></span>
+        </label>
+        <a id="cntct-pg" href="contact.html">Contact</a>
+    </nav>
+    
+    <h1>Resources</h1>
+    <div name="frm_calc" id="frame-calc">
+        <form>
+            
+            <label for="proj-name">What's the name of your project?</label>
+            <input type="text" name="prjName" id="proj-name" class="center" required>
+            
+            <label for="anim-length">How long is your animation?</label>
+            <input type="number" name="length" id="anim-length" class="center" placeholder="Enter the duration in minutes..." required>
+
+            <label for="time-per-frame">How long does it take to draw each frame?</label>
+            <input type="number" name="tpf" id="time-per-frame" class="center" placeholder="Enter the value in minutes..." required>
+
+            <label for="num-animators">How many animators do you have?</label>
+            <input type="number" name="numOfanimators" id="num-animators" class="center" required>
+    
+            <input type="submit" value="Calculate" onclick="event.preventDefault(); displayResults(prjName, length, tpf, numOfanimators)" class="center">
+        </form>
+        <br>
+        <div id="results"></div>
+    </div>
+    
+    <script>
+        var themeToggleCount = 0;
+        function toggleTheme() {
+            // Retrieves the current theme being utilized
+            const curTheme = document.body.getAttribute('data-theme');
+            
+            if(curTheme === 'dark'){
+                document.body.setAttribute('data-theme', 'light');
+            }
+            else {
+                document.body.setAttribute('data-theme', 'dark');
+            }
+            
+            // If the theme is toggled more than 3 times, the paragraph text on the home page turns blue.
+            if(themeToggleCount >= 3){
+                document.getElementById('bio-txt').style.color = 'blue';
+            }
+            // The number of times the theme has been changed is increased by one each time.
+            themeToggleCount += 1;
+            // Then, the number of theme changes is logged to the console.
+            console.log(`Theme has been changed ${themeToggleCount} time(s).`)
+        }
+        function displayResults(prj_name, length, time_per_frame, num_of_animators){
+            // Grabs access to a specially created 'div' element called "results"
+           const resultSection = document.getElementById("results");
+           
+           // Modifies the contents of the 'div' element to display a procedurally generated message based on the user's inputs.
+           resultSection.innerHTML = `<h2>Results</h2>
+           <p>Your project, <strong>${prj_name.value}</strong>, has a runtime of <strong>${length.value.toLocaleString()} minutes</strong>, comprised of at least <strong>${calcTotalNumOfFrames(length.value, 8).toLocaleString()} frames</strong> (when animating on 3's) and at most <strong>${calcTotalNumOfFrames(length.value, 24).toLocaleString()} frames</strong> (when animating on 1's).</p><p>Since you have a team of <strong>${num_of_animators.value.toLocaleString()} animators</strong> and it takes <strong>${time_per_frame.value} minutes</strong> to create one frame, it will take you roughly <strong>${calcProjectTime(calcTotalNumOfFrames(length.value, 8))(time_per_frame.value)(num_of_animators.value).toFixed().toLocaleString()} - ${calcProjectTime(calcTotalNumOfFrames(length.value, 24))(time_per_frame.value)(num_of_animators.value).toFixed().toLocaleString()} hours.</strong></p>`;
+        }
+        const calcProjectTime = numOfFrames => tpf => numOfAnimators => (numOfFrames * tpf)/(60 * numOfAnimators);
+        const calcTotalNumOfFrames = (length, dps) => length * (dps * 60);
+    </script>
+</body>
+</html>
