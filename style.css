@@ -102,7 +102,7 @@ form{
         background: transparent;
         border: 2px solid var(--primary);
         color: var(--text-color);
-        border-radius: 1em;
+        border-radius: 9px;
     }
     :is(input[type=text], input[type=email], textarea):hover{
         border-width: 2px;
@@ -146,7 +146,7 @@ form{
 }
 .flex-grid #learn-mat{
   order: 1;
-  padding: 0% 5%;
+  padding: 0% 3%;
 }
 /* The switch - the box around the slider */
 .switch {
