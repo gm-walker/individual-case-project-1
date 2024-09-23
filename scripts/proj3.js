@@ -17,11 +17,6 @@ function addSource (name, url, desc, provider){
         resources.push(new Source(name, url, desc, provider));
     }
 }
-
-function writeSourceToSection(section, source){
-    section.innerHTML += `<div class="resource"><h3>${source.name}</h3><p>${source.description}</p><p>${source.provider}</p></div>`
-}
-
 const displaySources = (section) => {
     section.innerHTML = '';
     
@@ -32,12 +27,19 @@ const displaySources = (section) => {
             break;
         case 1:
             console.log("Yipee! You have a source to look at!");
-            
+            resources.forEach((source) => {
+                section.innerHTML += `<div class="resource"><h3>${source.name}</h3><p>${source.description}</p><p>${source.provider}</p></div>`
+            });
             break;
         case 2:
             console.log("Oooh! We've got two sources! Yay!");
+            resources.forEach((source) => {
+                section.innerHTML += `<div class="resource"><h3>${source.name}</h3><p>${source.description}</p><p>${source.provider}</p></div>`
+            });
         default:
-            resources.forEach();
+            resources.forEach((source) => {
+                section.innerHTML += `<div class="resource"><h3>${source.name}</h3><p>${source.description}</p><p>${source.provider}</p></div>`
+            });
             console.log("Nice, we've got quite a few resources to look at.");
             break;
     }
