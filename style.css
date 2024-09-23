@@ -124,7 +124,9 @@ form{
         margin-left: 8%;
     }
 }
-
+p.center{
+  text-align: center;
+}
 .center{
     display: block;
     margin-left: auto;
@@ -133,20 +135,25 @@ form{
 
 .flex-grid{
   display: flex;
-  align-items: stretch;
-  justify-content: space-evenly;
-}
-
-.flex-grid, .flex-grid div{
-  margin: 5px 5%;
+  margin: 15px 2%;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 .flex-grid #frame-calc{
-  padding: 0% 2%;
-  flex: 1;
+  margin: 0% 1%;
+  padding: 0% 1%;
+  flex-basis: 1500px;
 }
 .flex-grid #learn-mat{
   order: 1;
-  padding: 0% 3%;
+  margin: 0% 2%;
+  padding: 0% 1%;
+  div{
+    margin: 0% 3%;
+    p {
+      margin: 2%;
+    }
+  }
 }
 /* The switch - the box around the slider */
 .switch {
