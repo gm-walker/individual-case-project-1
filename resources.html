@@ -44,8 +44,14 @@
     
                 <label for="num-animators">How many animators do you have?</label>
                 <input type="number" name="numOfanimators" id="num-animators" class="center" required>
+                
+                <label for="start-date">When are you starting this project?</label>
+                <input type="date" name="startDate" id="start-date">
+
+                <label for="is-new">First time?</label>
+                <input type="checkbox" name="isNewbie" id="is-new" value="new">
         
-                <input type="submit" value="Calculate" onclick="event.preventDefault(); displayResults(prjName, length, tpf, numOfanimators)" class="center">
+                <input type="submit" value="Calculate" onclick="event.preventDefault(); displayResults(prjName, length, tpf, numOfanimators, startDate, isNewbie)" class="center">
             </form>
             <br>
             <div id="results"></div>
@@ -56,13 +62,16 @@
     <script src="scripts/mobileNav.js"></script>
     <script src="scripts/proj3.js"></script>
     <script>
-        function displayResults(prj_name, length, time_per_frame, num_of_animators){
+        function displayResults(prj_name, length, time_per_frame, num_of_animators, startDate, isNew){
             // Grabs access to a specially created 'div' element called "results"
            const resultSection = document.getElementById("results");
            
            try{
             // If the submission has no project name...
-            if(prj_name.value === ""){
+            if(prj_name.value == "" && length.value <= 0 && time_per_frame <= 0 && num_of_animators <= 0){
+                throw "Nothing has been entered.\nPlease enter some values into the calculator."
+            }
+            else if(prj_name.value === ""){
                 throw "No project name.\nPlease enter a project name into the calculator.";
             }
             // If the animation length is less than 1 min...
@@ -77,9 +86,15 @@
             else if(num_of_animators <= 0){
                 throw "Invalid number of animators.\nPlease enter a value greater than zero (0)."
             }
+            var s_date = new Date(startDate.value);
+            s_date.setDate(s_date.getDate()+1);
+            
+            var e_date = new Date(s_date);
+            e_date.setDate(e_date.getDate() + Math.floor(calcProjectTime(calcTotalNumOfFrames(length.value, 8))(time_per_frame.value)(num_of_animators.value)(isNew.checked).toFixed()/8));
+            
             // Modifies the contents of the 'div' element to display a procedurally generated message based on the user's inputs.
-           resultSection.innerHTML = `<h2>Results</h2>
-           <p>Your project, <strong>${prj_name.value}</strong>, has a runtime of <strong>${length.value.toLocaleString()} minutes</strong>, comprised of at least <strong>${calcTotalNumOfFrames(length.value, 8).toLocaleString()} frames</strong> (when animating on 3's) and at most <strong>${calcTotalNumOfFrames(length.value, 24).toLocaleString()} frames</strong> (when animating on 1's).</p><p>Since you have a team of <strong>${num_of_animators.value.toLocaleString()} animators</strong> and it takes <strong>${time_per_frame.value} minutes</strong> to create one frame, it will take you roughly <strong>${calcProjectTime(calcTotalNumOfFrames(length.value, 8))(time_per_frame.value)(num_of_animators.value).toFixed().toLocaleString()} - ${calcProjectTime(calcTotalNumOfFrames(length.value, 24))(time_per_frame.value)(num_of_animators.value).toFixed().toLocaleString()} hours.</strong></p>`;
+            resultSection.innerHTML = `<h2>Results</h2>
+            <p>Your project, <strong>${prj_name.value}</strong>, has a runtime of <strong>${length.value.toLocaleString()} minutes</strong>, comprised of at least <strong>${calcTotalNumOfFrames(length.value, 8).toLocaleString()} frames</strong> (when animating on 3's) and at most <strong>${calcTotalNumOfFrames(length.value, 24).toLocaleString()} frames</strong> (when animating on 1's).</p><p>Since you have a team of <strong>${num_of_animators.value.toLocaleString()} animators</strong> and it takes <strong>${time_per_frame.value} minutes</strong> to create one frame, it will take you roughly <strong>${calcProjectTime(calcTotalNumOfFrames(length.value, 8))(time_per_frame.value)(num_of_animators.value)(isNew.checked).toFixed().toLocaleString()} - ${calcProjectTime(calcTotalNumOfFrames(length.value, 24))(time_per_frame.value)(num_of_animators.value)(isNew.checked).toFixed().toLocaleString()} hours.</strong></p><p>If you start animating <strong>${s_date.toDateString()}</strong>, then you can expect to finish (at the earliest) around <strong>${e_date.toDateString()}</strong></p>`;
            }
            // If an error occurs, display the error in an alert to the user and in the browser console.
            catch (err){
@@ -87,7 +102,12 @@
                 alert(`ERROR: ${err}`);
            }   
         }
-        const calcProjectTime = numOfFrames => tpf => numOfAnimators => (numOfFrames * tpf)/(60 * numOfAnimators);
+        const calcProjectTime = numOfFrames => tpf => numOfAnimators => isNew => {
+            if(isNew == true){
+                return (numOfFrames * tpf)/(60 * numOfAnimators) * 2;
+            }
+            return (numOfFrames * tpf)/(60 * numOfAnimators);
+        };
         const calcTotalNumOfFrames = (length, dps) => length * (dps * 60);
     </script>
 </body>
