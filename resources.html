@@ -86,9 +86,11 @@
             else if(num_of_animators <= 0){
                 throw "Invalid number of animators.\nPlease enter a value greater than zero (0)."
             }
+            // Creates a Date Object for the project's start date.
             var s_date = new Date(startDate.value);
             s_date.setDate(s_date.getDate()+1);
             
+            // Creates a Date Object for the project's estimated end date based on the project time
             var e_date = new Date(s_date);
             e_date.setDate(e_date.getDate() + Math.floor(calcProjectTime(calcTotalNumOfFrames(length.value, 8))(time_per_frame.value)(num_of_animators.value)(isNew.checked).toFixed()/8));
             
@@ -103,6 +105,7 @@
            }   
         }
         const calcProjectTime = numOfFrames => tpf => numOfAnimators => isNew => {
+            // If this is their first time, double the time it could take.
             if(isNew == true){
                 return (numOfFrames * tpf)/(60 * numOfAnimators) * 2;
             }
