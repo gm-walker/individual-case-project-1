@@ -68,10 +68,7 @@
            
            try{
             // If the submission has no project name...
-            if(prj_name.value == "" && length.value <= 0 && time_per_frame <= 0 && num_of_animators <= 0){
-                throw "Nothing has been entered.\nPlease enter some values into the calculator."
-            }
-            else if(prj_name.value === ""){
+            if(prj_name.value === ""){
                 throw "No project name.\nPlease enter a project name into the calculator.";
             }
             // If the animation length is less than 1 min...
@@ -85,6 +82,9 @@
             // If the number of animators working on this project is less than one (1)...
             else if(num_of_animators <= 0){
                 throw "Invalid number of animators.\nPlease enter a value greater than zero (0)."
+            }
+            else if(startDate == ""){
+                throw "No start date. \n Please enter the project's start date into the calculator."
             }
             // Creates a Date Object for the project's start date.
             var s_date = new Date(startDate.value);
