@@ -54,6 +54,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  z-index: -1;
 }
 
 /* makes all headings & navbar elements lowercase */
@@ -93,8 +94,8 @@ nav{
   display: none;
   float: left;
   position: absolute;
-  left: -8%;
-  top: 7%;
+  left: -11%;
+  top: 6%;
   background-color: var(--primary);
   padding: 14px 16px;
   border-bottom-left-radius: 25px;
