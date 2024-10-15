@@ -5,5 +5,6 @@ const expandNav = () => {
     }
     else {
         page_links.style.display = "block";
+        
     }
 };
