@@ -59,6 +59,8 @@ const calcProjectTime = numOfFrames => tpf => numOfAnimators => isNew => {
     return (numOfFrames * tpf)/(60 * numOfAnimators);
 };
 const calcTotalNumOfFrames = (length, dps) => length * (dps * 60);
+
+// When the overlay is clicked on, the overlay disappears.
 document.getElementById("results").onclick = () => {
     document.getElementById("results").style.display = "none"
 }
