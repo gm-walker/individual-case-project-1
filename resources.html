@@ -50,9 +50,10 @@
 
                 <label for="is-new">First time?</label>
                 <input type="checkbox" name="isNewbie" id="is-new" value="new">
-        
-                <input type="submit" value="Calculate" onclick="event.preventDefault(); displayResults()" class="center">
-                <input type="reset" class="center">
+                <div id="frm_calc-bttns">
+                    <input type="submit" value="Calculate" onclick="event.preventDefault(); displayResults()">
+                <input type="reset">
+                </div>
             </form>
             <br>
             <div id="results" class="overlay"></div>

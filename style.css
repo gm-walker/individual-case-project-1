@@ -156,12 +156,17 @@ form{
     input:hover, textarea:hover{
         border-color: var(--accent-2)
     }
-    input[type=submit]:hover{
+    input[type=submit]:hover, input[type=reset]:hover{
         background-color: var(--accent-2);
     }
     label{
         margin-left: 8%;
     }
+}
+#frm_calc-bttns{
+  display: flex;
+  flex: auto;
+  justify-content: center;
 }
 p.center{
   text-align: center;
