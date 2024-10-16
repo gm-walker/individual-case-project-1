@@ -146,7 +146,7 @@ form{
     :is(input[type=text], input[type=email], textarea):hover{
         border-width: 2px;
     }
-    input[type=submit]{
+    input[type=submit], input[type=reset]{
         width: 25%;
         background-color: var(--primary);
         color: var(--text-color);
