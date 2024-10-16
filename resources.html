@@ -37,10 +37,12 @@
                 <input type="text" name="prjName" id="proj-name" class="center" required>
                 
                 <label for="anim-length">How long is your animation?</label>
-                <input type="number" name="animLength" id="anim-length" class="center" placeholder="Enter the duration in minutes..." required>
+                <input type="number" name="animLength" id="anim-length" class="center" placeholder="Enter the duration in minutes..." min="1"
+                required>
     
                 <label for="time-per-frame">How long does it take to draw each frame?</label>
-                <input type="number" name="tpf" id="time-per-frame" class="center" placeholder="Enter the value in minutes..." required>
+                <input type="number" name="tpf" id="time-per-frame" class="center" 
+                min="1" placeholder="Enter the value in minutes..." required>
     
                 <label for="num-animators">How many animators do you have?</label>
                 <input type="number" name="numOfanimators" id="num-animators" class="center" required>

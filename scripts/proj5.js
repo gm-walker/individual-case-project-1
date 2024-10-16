@@ -14,19 +14,25 @@ function displayResults(){
     const calculator = document.forms[0].elements
     try{
         // If the submission has no project name...
-        if(calculator.prjName.value === ""){
+        if(calculator.prjName.validity.valueMissing){
             throw "No project name.\nPlease enter a project name into the calculator.";
         }
+        else if(calculator.animLength.validity.valueMissing){
+            throw "Your animation has no length.\nPlease enter the length of your animation in the calculator."
+        }
         // If the animation length is less than 1 min...
-        else if(calculator.animLength.value <= 0){
-            throw "Invalid animation length.\nPlease enter a value greater than zero (0)."
+        else if(calculator.animLength.validity.rangeUnderflow){
+            throw "Invalid animation length.\nPlease enter a value greater than  (0)."
+        }
+        else if(calculator.tpf.validity.valueMissing){
+            throw "No time per frame is missing.\nPlease enter the number of minutes it takes for you to create a drawing."
         }
         // If the time it takes to create one (1) frame of animation is less than one (1) min...
-        else if(calculator.tpf.value <= 0){
+        else if(calculator.tpf.validity.rangeUnderflow){
             throw "Invalid time per frame.\nPlease enter a value greater than zero (0)."
         }
         // If the number of animators working on this project is less than one (1)...
-        else if(calculator.numOfanimators.value <= 0){
+        else if(calculator.numOfanimators.validity.rangeUnderflow){
             throw "Invalid number of animators.\nPlease enter a value greater than zero (0)."
         }
         else if(calculator.startDate.value == ""){
