@@ -37,7 +37,7 @@
                 <input type="text" name="prjName" id="proj-name" class="center" required>
                 
                 <label for="anim-length">How long is your animation?</label>
-                <input type="number" name="length" id="anim-length" class="center" placeholder="Enter the duration in minutes..." required>
+                <input type="number" name="animLength" id="anim-length" class="center" placeholder="Enter the duration in minutes..." required>
     
                 <label for="time-per-frame">How long does it take to draw each frame?</label>
                 <input type="number" name="tpf" id="time-per-frame" class="center" placeholder="Enter the value in minutes..." required>
@@ -51,7 +51,8 @@
                 <label for="is-new">First time?</label>
                 <input type="checkbox" name="isNewbie" id="is-new" value="new">
         
-                <input type="submit" value="Calculate" onclick="event.preventDefault(); displayResults(prjName, length, tpf, numOfanimators, startDate, isNewbie)" class="center">
+                <input type="submit" value="Calculate" onclick="event.preventDefault(); displayResults()" class="center">
+                <input type="reset" class="center">
             </form>
             <br>
             <div id="results" class="overlay"></div>
