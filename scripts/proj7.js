@@ -1,13 +1,23 @@
 const contact_form = document.forms["contactfrm"].elements;
 const files = [];
+
+/**
+ * This function adds the file to the 'recentFiles' select element and to the 'files' array.
+ * @param {string} file - The file's path
+ */
+
 function addFile(file){
     try{
+        // If the file exists in the 'files' array, it will throw an exception.
         files.forEach(f => {
             if(f == file.match(/[a-zA-Z0-9_]+\.txt/g)[0]){
                 throw `ERR: ${f} already exists`;
             }
         })
+        // Otherwise, it pushes the filename into the array.
         files.push(file.match(/[a-zA-Z0-9_]+\.txt/g)[0]);
+        
+        // Creates a new option and places it into 'recentFiles' select element.
         let newOption = document.createElement("option")
         newOption.value = contact_form.message.value;
         newOption.text = file.match(/[a-zA-Z0-9_]+\.txt/g);
@@ -17,7 +27,11 @@ function addFile(file){
         console.log(err)
     }
 }
+
 contact_form.text_file.onchange = readTxtFile;
+/**
+ * This function reads the file uploaded by the user and places its contents into the 'Message' text area.
+ */
 function readTxtFile(){
     let file_reader = new FileReader();
     file_reader.readAsText(this.files[0]);
@@ -25,31 +39,43 @@ function readTxtFile(){
     file_reader.onload = function(){
         contact_form.message.value = file_reader.result;
         
-        console.log(files);
         addFile(contact_form.text_file.value);
         
+        // Clears the 'Message' text area
         contact_form.text_file.value = '';
+        
         parseMessage.call(contact_form.message);
     }
 }
 contact_form.recentFiles.onchange = function(){   
+    
     // When a file is loaded, it will be read and the contents will be placed in the message text area.
     contact_form.message.value = this.value;
 
 }
 contact_form.delOption.onclick= function(){
+    // If there are no elements, notify and do nothing.
     if(contact_form.recentFiles.selectedOptions.length == 0){
         console.log("There are no options to remove");
         return;
     }
     let fileName = contact_form.recentFiles.selectedOptions[0].innerHTML;
+    
+    // Removes the file from the 'recentFiles' select element
     contact_form.recentFiles.remove(contact_form.recentFiles.selectedIndex);
+    
+    // Removes the filename from the 'files' array
     delete files[files.indexOf(fileName)];
     files.length -= 1;
+    
     console.log(files);
+    
+    // Clears the 'Message' text area
     contact_form.message.value = '';
 }
+
 contact_form.email.onchange = getEmailDomain;
+
 function getEmailDomain(){
     let email_parts = this.value.split('@')
     
@@ -69,9 +95,10 @@ function getEmailDomain(){
     }
 }
 
-
-
 contact_form.message.onchange = parseMessage;
+/**
+ * This function parses the message in the 'Message' text area and find the number of occurrences of each word.
+ */
 function parseMessage(){
     // Parses the message, finding all words
     let message_words = this.value.split(/[\s,!?;.:]+/g);
