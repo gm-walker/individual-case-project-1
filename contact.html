@@ -35,13 +35,26 @@
             
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" class="center" required>
+
+            <label for="msg-title">Subject:</label>
+            <input type="text" name="title" id="msg-title" minlength="5" maxlength="50" class="center">
             
-            <textarea name="message" id="msg" class="center" form="contactfrm" placeholder="Enter your message here..."></textarea>
+            <label for="msg">Message:</label>
+            <textarea name="message" id="msg" class="center" form="contactfrm" placeholder="Enter your message here..." rows="25"></textarea>
+            
+            <label for="txt-file">Upload Message (optional):</label>
+            <input type="file" name="text_file" id="txt-file" class="center" accept=".txt">
+            <label for"recentfiles">Select a recent file:</label>
+            <select name="recentFiles" id="recentfiles">
+            </select>
+            <button id="delOption">Remove Option</button>
             
             <input type="submit" value="Submit" class="center">
+
         </form>
     </div>
     <script src="scripts/themeChange.js"></script>
     <script src="scripts/mobileNav.js"></script>
+    <script src="scripts/proj7.js"></script>
 </body>
 </html>
