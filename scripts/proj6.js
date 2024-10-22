@@ -8,7 +8,10 @@ Therefore, it was very important for me to check to make sure that I was working
 I also utilized 'console.log()' to ensure methods were functioning properly by placing these calls in certain sections of my code 
 to make sure certain things run or don't run.
 */
+
 const fields = Array.from(document.forms[0].elements).filter((field) => field.type !== "submit" && field.type !== "reset");
+
+// Validates all fields whenever focused on or being changed.
 fields.forEach(field => {
     field.onfocus = validate;
     field.oninput = validate;
@@ -45,6 +48,7 @@ function validate(){
         }
     }
     catch(err){
+        // Errors that are caught will be reported to the user
         this.setCustomValidity(err);
         this.reportValidity();
     }
