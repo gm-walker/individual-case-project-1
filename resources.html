@@ -31,7 +31,7 @@
         </div>
         <div name="frm_calc" id="frame-calc">
             <h2>Frame Calculator</h2>
-            <form>
+            <form onsubmit=" event.preventDefault(); displayResults()">
                 
                 <label for="proj-name">What's the name of your project?</label>
                 <input type="text" name="prjName" id="proj-name" class="center" required>
@@ -45,7 +45,7 @@
                 min="1" placeholder="Enter the value in minutes..." required>
     
                 <label for="num-animators">How many animators do you have?</label>
-                <input type="number" name="numOfanimators" id="num-animators" class="center" required>
+                <input type="number" name="numOfanimators" id="num-animators" class="center" required min="1">
                 
                 <label for="start-date">When are you starting this project?</label>
                 <input type="date" name="startDate" id="start-date" class="center">
@@ -53,8 +53,8 @@
                 <label for="is-new">First time?</label>
                 <input type="checkbox" name="isNewbie" id="is-new" value="new">
                 <div id="frm_calc-bttns">
-                    <input type="submit" value="Calculate" onclick="event.preventDefault(); displayResults()">
-                <input type="reset">
+                    <input type="submit" value="Calculate">
+                    <input type="reset">
                 </div>
             </form>
             <br>
@@ -65,6 +65,6 @@
     <script src="scripts/themeChange.js"></script>
     <script src="scripts/mobileNav.js"></script>
     <script src="scripts/proj3.js"></script>
-    <script src="scripts/proj5.js"></script>
+    <script src="scripts/proj6.js"></script>
 </body>
 </html>
