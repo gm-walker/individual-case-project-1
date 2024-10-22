@@ -29,6 +29,16 @@
             <h2>Learning Materials</h2>
             <div id="bib-items"></div>
         </div>
+        <!--
+            When developing websites, especially those that utilize or manage sensitive data, 
+            it is critical to validate the data entered to prevent malicious users from accessing 
+            the sensitive data of others, masquerading as other users, and manipulating the 
+			functionality of the website.
+            In the case of my website, I could see some serious vulnerabilities in how I barely 
+            parse strings in text fields to ensure scripts cannot execute (ex. "prjName" text 
+            field in "frm_calc" form). A small fix I could make is to use regular expressions to 
+            either filter script tags out or ensure that the browser does not read the data as an HTML script.
+        -->
         <div name="frm_calc" id="frame-calc">
             <h2>Frame Calculator</h2>
             <form onsubmit=" event.preventDefault(); displayResults()">
