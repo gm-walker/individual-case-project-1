@@ -10,6 +10,8 @@ to make sure certain things run or don't run.
 */
 
 const fields = Array.from(document.forms[0].elements).filter((field) => field.type !== "submit" && field.type !== "reset");
+const STD_DPS = 24;
+const ECON_DPS = STD_DPS/3;
 
 // Validates all fields whenever focused on or being changed.
 fields.forEach(field => {
@@ -54,6 +56,35 @@ function validate(){
     }
 }
 
+function Project(name, team_size, start_date, is_first){
+    this.prj_name = name;
+    this.team_size = team_size;
+    this.start_date = start_date;
+    this.is_first = is_first;
+}
+
+
+function Animation_Project(name, team_size, start_date, is_first, length, time_per_frame){
+    Project.call(this, name, team_size, start_date, is_first);
+    
+    this.length = length;
+    this.time_per_frame = time_per_frame;
+    this.calcTotalNumOfFrames = (dps) => this.length * (dps * 60);
+    this.calcProjectTime = (dps) => {
+        // If this is their first time, double the time it could take.
+        if(this.is_first == true){
+            return (this.calcTotalNumOfFrames(dps) * this.time_per_frame)/(60 * this.team_size) * 2;
+        }
+        return (this.calcTotalNumOfFrames(dps) * this.time_per_frame)/(60 * this.team_size);
+    };
+    this.end_date = () =>{
+        let tmp_date = new Date(this.start_date);
+        tmp_date.setDate(tmp_date.getDate() + Math.floor(this.calcProjectTime(STD_DPS).toFixed()/8));
+        return tmp_date;
+    }
+}
+
+
 function displayResults(){
     // Grabs access to a specially created 'div' element called "results"
     const resultSection = document.getElementById("results");
@@ -62,23 +93,14 @@ function displayResults(){
         var s_date = new Date(calculator.startDate.value);
         s_date.setDate(s_date.getDate()+1);
         
-        // Creates a Date Object for the project's estimated end date based on the project time
-        var e_date = new Date(s_date);
-        e_date.setDate(e_date.getDate() + Math.floor(calcProjectTime(calcTotalNumOfFrames(calculator.animLength.value, 8))(calculator.tpf.value)(calculator.numOfanimators.value)(calculator.isNewbie.checked).toFixed()/8));
+        let a_prj = new Animation_Project(calculator.prjName.value, calculator.numOfanimators.value, s_date, calculator.isNewbie.checked, calculator.animLength.value, calculator.tpf.value);
         
         // Modifies the contents of the 'div' element to display a procedurally generated message based on the user's inputs.
         resultSection.style.display = "block";
         resultSection.innerHTML = `<div><h2>Results</h2>
-        <p>Your project, <strong>${calculator.prjName.value.toUpperCase()}</strong>, has a runtime of <strong>${calculator.animLength.value.toLocaleString()} minutes</strong>, comprised of at least <strong>${calcTotalNumOfFrames(calculator.animLength.value, 8).toLocaleString()} frames</strong> (when animating on 3's) and at most <strong>${calcTotalNumOfFrames(calculator.animLength.value, 24).toLocaleString()} frames</strong> (when animating on 1's).</p><p>Since you have a team of <strong>${calculator.numOfanimators.value.toLocaleString()} animators</strong> and it takes <strong>${calculator.tpf.value} minutes</strong> to create one frame, it will take you roughly <strong>${calcProjectTime(calcTotalNumOfFrames(calculator.animLength.value, 8))(calculator.tpf.value)(calculator.numOfanimators.value)(calculator.isNewbie.checked).toFixed().toLocaleString()} - ${calcProjectTime(calcTotalNumOfFrames(calculator.animLength.value, 24))(calculator.tpf.value)(calculator.numOfanimators.value)(calculator.isNewbie.checked).toFixed().toLocaleString()} hours.</strong></p><p>If you start animating <strong>${s_date.toDateString()}</strong>, then you can expect to finish (at the earliest) around <strong>${e_date.toDateString()}</strong></p></div>`;   
+        <p>Your project, <strong>${a_prj.prj_name.toUpperCase()}</strong>, has a runtime of <strong>${a_prj.length.toLocaleString()} minutes</strong>, comprised of at least <strong>${a_prj.calcTotalNumOfFrames(ECON_DPS).toLocaleString()} frames</strong> (when animating on 3's) and at most <strong>${a_prj.calcTotalNumOfFrames(STD_DPS).toLocaleString()} frames</strong> (when animating on 1's).</p><p>Since you have a team of <strong>${a_prj.team_size.toLocaleString()} animators</strong> and it takes <strong>${a_prj.time_per_frame} minutes</strong> to create one frame, it will take you roughly <strong>${a_prj.calcProjectTime(ECON_DPS).toFixed().toLocaleString()} - ${a_prj.calcProjectTime(STD_DPS).toFixed().toLocaleString()} hours.</strong></p><p>If you start animating <strong>${a_prj.start_date.toDateString()}</strong>, then you can expect to finish (at the earliest) around <strong>${a_prj.end_date().toDateString()}</strong></p></div>`;   
 }
-const calcProjectTime = numOfFrames => tpf => numOfAnimators => isNew => {
-    // If this is their first time, double the time it could take.
-    if(isNew == true){
-        return (numOfFrames * tpf)/(60 * numOfAnimators) * 2;
-    }
-    return (numOfFrames * tpf)/(60 * numOfAnimators);
-};
-const calcTotalNumOfFrames = (length, dps) => length * (dps * 60);
+
 
 // When the overlay is clicked on, the overlay disappears.
 document.getElementById("results").onclick = () => {
