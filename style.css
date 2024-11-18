@@ -163,6 +163,20 @@ form{
         margin-left: 8%;
     }
 }
+#trivia-game{
+  button{
+    background-color: var(--primary);
+    width: 25%;
+    padding: 2%;
+    text-transform: lowercase;
+    color: var(--text-color);
+    font-size: large;
+    border-radius: 30px;
+  }
+  button:hover{
+    background-color: var(--accent-2);
+  }
+}
 #frm_calc-bttns{
   display: flex;
   flex: auto;
