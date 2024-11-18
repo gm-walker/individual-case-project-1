@@ -27,3 +27,11 @@ const trivia_q = [
 ];
 
 console.log(trivia_q);
+
+function displayQuestion(question) {
+    // Displays the question and its options on the page.
+}
+
+function checkAnswer(question, response){
+    // Checks the answer selected by the user
+}
