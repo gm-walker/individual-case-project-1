@@ -41,8 +41,6 @@ function toggleTheme() {
     }
     // The number of times the theme has been changed is increased by one each time.
     themeToggleCount += 1;
-    // Notifies the user that they've changed the theme
-    window.alert(`You've changed the theme!`)
     // Then, the number of theme changes is logged to the console.
     console.log(`Theme has been changed ${themeToggleCount} time(s).`)
 }
