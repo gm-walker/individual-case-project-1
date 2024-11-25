@@ -11,16 +11,16 @@ const trivia_q = [
     {
         question: "Who was the father of animation?",
         options:{
-            "Émile Cohl": true,
             "Walt Disney": false,
             "Richard Williams": false,
+            "Émile Cohl": true,
         }
     },
     {
         question: "Who worked with Robert Zemeckis to blend live action and animation?",
         options:{
-            "Richard Williams": true,
             "Stephen Spielberg": false,
+            "Richard Williams": true,
             "Dale Baer": false,
         }
     }
@@ -43,9 +43,11 @@ function displayQuestion(question) {
     // Displays the question and its options on the page.
     let trivia_area = document.getElementById("trivia-game");
 
+    // Set up trivia frame
     trivia_area.innerHTML = `<h1 id="t_question">${question.question}</h1><div id="trivia-options"></div><div id="trivia-field"></div><button id="trivia-next">Answer</button>`
     
     let trivia_options = document.getElementById("trivia-options");
+    
     let i = 1;
     for(const keys in question.options){
         trivia_options.innerHTML += `<div id="q_${i}" class="t_option" draggable="true">${keys}</div>`;
@@ -63,9 +65,11 @@ function displayQuestion(question) {
     document.getElementById("trivia-field").addEventListener("drop", (event)=>{
         const data = event.dataTransfer.getData("html");
         const selected = document.getElementById(data);
+        // If there is no child...
         if(event.target.firstChild == null){
             event.target.appendChild(selected.cloneNode(selected));
         }
+        // Otherwise...
         else{
             let old = event.currentTarget.firstChild;
             event.currentTarget.replaceChild(selected.cloneNode(selected), old);
@@ -85,10 +89,12 @@ function displayQuestion(question) {
         checkAnswer(trivia_q, curIndex, selected);
         console.log(curIndex)
         console.log(trivia_q.length);
+        // If the question is the final question...
         if(curIndex == (trivia_q.length - 1)){
             event.currentTarget.innerText = "done";
             event.currentTarget.onclick = showFinalScreen;
         }
+        // Otherwise...
         else{
             event.currentTarget.innerText = "next";
             event.currentTarget.onclick = displayNextQuestion;
@@ -111,6 +117,7 @@ function checkAnswer(trivia, qIndex, response){
 }
 
 function showFinalScreen(){
+    // Displays the final screen, showing the number of questions the user got right.
     const screen = document.getElementById("trivia-game");
     screen.innerHTML = `<h1>Congrats!</h1><p>You've answered all of the questions.<br>You've answered ${score} question(s) correctly out of ${trivia_q.length}.</p><br><button onclick="displayQuestion(trivia_q[0])">play again</button>`;
 
