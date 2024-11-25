@@ -164,18 +164,47 @@ form{
     }
 }
 #trivia-game{
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   button{
     background-color: var(--primary);
-    width: 25%;
-    padding: 2%;
+    width: 12.5%;
+    padding: 1%;
     text-transform: lowercase;
     color: var(--text-color);
     font-size: large;
     border-radius: 30px;
+    border-width: 0px;
   }
   button:hover{
     background-color: var(--accent-2);
   }
+}
+#trivia-options{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  max-width: 905px;
+}
+.t_option{
+  padding: 20px;
+  background-color: var(--primary);
+  border-radius: 10px;
+  margin: 5px;
+  flex: 1 1 auto;
+  text-align: center;
+}
+#trivia-field{
+  border: 2px, dashed, var(--accent-2);
+  width: 50%;
+  max-width: 340px;
+  min-height: 50px;
+  height: 100%;
+  margin: 15px;
+  border-radius: 25px;
+  margin: 20px;
 }
 #frm_calc-bttns{
   display: flex;
